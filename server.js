@@ -4,11 +4,21 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const session = require('express-session');
 require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+    session({
+        secret: 'm&mnitkcv@1',
+        resave: false,
+        saveUninitialized: true
+    })
+);
 
 // MongoDB Connection
 const connectDB = async () => {
@@ -66,10 +76,15 @@ app.post('/login', async (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
-  // Just a placeholder, since we are not using sessions
-  res.json({ message: 'Logged out successfully' });
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to logout' });
+        }
+        res.status(200).json({ message: 'Logged out successfully' });
+    });
 });
 
 // Start server
+const jwtSecret = process.env.JWT_SECRET || 'fallbackSecret';
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
