@@ -1,12 +1,15 @@
 {
-  "name": "lynx-website",
+  "name": "lynx-clothing-backend",
   "version": "1.0.0",
-  "description": "Clothing brand website for Lynx",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.18.0"
+    "express": "^4.18.1",
+    "mongoose": "^6.0.12",
+    "bcrypt": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "dotenv": "^10.0.0"
   }
 }
