@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 // Routes
-app.post('/signup', async (req, res) => {
+app.post('https://lynxclothing.onrender.com/signup', async (req, res) => {
   const { username, email, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   
@@ -46,7 +46,7 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-app.post('/login', async (req, res) => {
+app.post('https://lynxclothing.onrender.com/login', async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
 
