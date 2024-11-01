@@ -5,7 +5,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const session = require('express-session');
+const cartRoutes = require('./routes/cartroute');
+const Product = require('./models/Product');
 require('dotenv').config();
+
+ // Adjust the path if necessary
+
 
 const app = express();
 
@@ -20,6 +25,9 @@ app.use(
         saveUninitialized: true
     })
 );
+app.use('/cart', cartRoutes);
+app.use('/products', productRoutes);
+
 
 // MongoDB Connection
 const connectDB = async () => {
