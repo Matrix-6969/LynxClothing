@@ -1,7 +1,7 @@
 // routes/session.js
 const express = require('express');
-const Session = require('../models/Session');
-const User = require('../models/User');
+const Session = require('../models/session');
+const User = require('../models/user');
 
 const router = express.Router();
 
