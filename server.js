@@ -153,6 +153,26 @@ app.post('/cart/remove', async (req, res) => {
     res.status(200).json({ message: 'Item removed from cart', cart });
 });
 
+//checout route
+app.post('/checkout', async (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+    
+    const cart = await Cart.findOne({ userId: req.session.user._id });
+    if (!cart || cart.items.length === 0) {
+        return res.status(400).json({ message: 'Cart is empty' });
+    }
+    
+    // Process the order here (e.g., payment, order saving)
+    cart.items = []; // Clear cart after checkout
+    await cart.save();
+    
+    res.status(200).json({ message: 'Checkout successful!' });
+});
+
+
+
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
