@@ -6,8 +6,8 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const userRoutes = require('./routes/user'); // User routes
 const sessionRoutes = require('./routes/session'); // Session routes
-const cartRoutes = require('./routes/cartroute'); // Cart routes
-const productRoutes = require('./routes/productroute'); // Product routes
+const cartRoutes = require('./routes/cartroutes'); // Cart routes
+const productRoutes = require('./routes/productroutes'); // Product routes
 require('dotenv').config();
 
 const app = express();
