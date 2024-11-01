@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Cart = require('./models/cart'); // Adjust the path as necessary
-const Product = require('./models/product'); // Adjust the path as necessary
+const Cart = require('../models/cart'); // Adjust the path as necessary
+const Product = require('../models/product'); // Adjust the path as necessary
 
 // Middleware to ensure user is logged in
 const isAuthenticated = (req, res, next) => {
